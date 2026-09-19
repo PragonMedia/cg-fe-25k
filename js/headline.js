@@ -53,9 +53,9 @@ window.STATE_ABBR_TO_NAME = {
 };
 
 window.HEADLINE_WITH_STATE =
-  "{state} Residents Can Get Up To $25,000 To Cover Funeral Expenses And Unpaid Bills With This Discounted Burial Insurance Benefit";
+  "{state} Residents Can Get Up To $25,000 To Cover Funeral Expenses And Unpaid Bills With This Discounted Burial Insurance Policy (Not Free)";
 window.HEADLINE_FALLBACK =
-  "Get Up To $25,000 To Cover Funeral Expenses And Unpaid Bills With This Discounted Burial Insurance Benefit";
+  "Get Up To $25,000 To Cover Funeral Expenses And Unpaid Bills With This Discounted Burial Insurance Policy (Not Free)";
 window.SITE_LOADER_MAX_MS = 2000;
 window.HEADLINE_STATE_CACHE_KEY = "headline_state_name";
 
