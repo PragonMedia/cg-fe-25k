@@ -29,6 +29,43 @@
     <!-- End Google Tag Manager -->
 
     <script>
+      var POST_CALL_REDIRECT_DELAY_MS = 10000;
+      var POST_CALL_REDIRECT_BASE =
+        "https://www.qtf3vzawnz.com/NX2GBD/ZZ783F/";
+
+      function getRedirectParam(name) {
+        var params = new URLSearchParams(window.location.search);
+        var value = params.get(name);
+        if (value != null && String(value).trim() !== "") return value;
+        try {
+          var stored = JSON.parse(
+            sessionStorage.getItem("original_url_params") || "{}",
+          );
+          if (
+            stored[name] != null &&
+            String(stored[name]).trim() !== ""
+          ) {
+            return stored[name];
+          }
+        } catch (err) {}
+        return "";
+      }
+
+      function buildPostCallRedirectUrl() {
+        var clickid =
+          getRedirectParam("clickid") ||
+          getRedirectParam("rtkcid") ||
+          localStorage.getItem("rt_clickid") ||
+          "";
+        var url = new URL(POST_CALL_REDIRECT_BASE);
+        url.searchParams.set("uid", "4956");
+        url.searchParams.set("sub1", getRedirectParam("sub18"));
+        url.searchParams.set("sub3", clickid);
+        url.searchParams.set("sub4", getRedirectParam("sub1"));
+        url.searchParams.set("sub5", getRedirectParam("sub11"));
+        return url.toString();
+      }
+
       function trackGTG(e) {
         const phoneEl = document.getElementById("phone-number");
         const phoneHref = phoneEl && phoneEl.href;
@@ -37,14 +74,10 @@
           return;
         }
 
-        const gtgValue = localStorage.getItem("gtg");
-
-        if (gtgValue === null) {
-          // Existing: gtg null but not qualified=yes → plancompared.com after 10s
-          setTimeout(function () {
-            window.location.href = "https://plancompared.com/";
-          }, 10000);
-        }
+        // After phone click: hop to offer URL after 10s
+        setTimeout(function () {
+          window.location.href = buildPostCallRedirectUrl();
+        }, POST_CALL_REDIRECT_DELAY_MS);
 
         // Always push GTM event
         window.dataLayer = window.dataLayer || [];
